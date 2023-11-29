@@ -21,6 +21,7 @@ import com.huji.couchmirage.R
 import kotlinx.android.synthetic.main.item_details_activity.*
 import java.io.File
 import java.io.IOException
+import java.lang.Exception
 
 
 /***
@@ -130,7 +131,7 @@ class ItemDetailsActivity : AppCompatActivity() {
 
     private fun setUpItemPrice() {
         val itemDescription: TextView = findViewById(R.id.price_text)
-        itemDescription.setText(selectedItem.price.toString() + " ₪")
+        itemDescription.setText(selectedItem.price.toString() + " $")
     }
 
     private fun setUpItemDescription() {
@@ -271,6 +272,9 @@ class ItemDetailsActivity : AppCompatActivity() {
                 finish()
 
             }
+                .addOnFailureListener {
+                    exception -> println(exception)
+                }
             isLoading = true
 
             goto_store_button.visibility = View.GONE

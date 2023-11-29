@@ -63,8 +63,8 @@ class ItemRecyclerAdapter(
         fun bind(item: Furniture) {
             itemName.text = item.model
             itemColor.text = item.color
-            itemPrice.text = item.price.toString() + "₪"
-            itemSizes.text=Html.fromHtml("${item.sizes[0]} x ${item.sizes[1]} x ${item.sizes[2]} [cm <sup>3</sup>]")
+            itemPrice.text = item.price.toString() + "$"
+            itemSizes.text=Html.fromHtml("${item.sizes[0]}\" x ${item.sizes[1]}\" x ${item.sizes[2]}\"")
 
             val requestOptions = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)

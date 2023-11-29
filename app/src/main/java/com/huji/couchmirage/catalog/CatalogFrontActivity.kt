@@ -144,6 +144,10 @@ class CatalogFrontActivity : AppCompatActivity() {
 
                     isClicked = false
                 }
+                .addOnFailureListener{ error ->
+
+                    println(error);
+                }
             isClicked = true
         }
 
