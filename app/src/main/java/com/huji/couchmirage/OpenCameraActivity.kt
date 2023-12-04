@@ -31,11 +31,8 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.firebase.FirebaseApp
-import com.huji.couchmirage.Help.HelpActivity
 import com.huji.couchmirage.ar.MyArFragment
 import com.huji.couchmirage.catalog.CatalogFrontActivity
-import com.huji.couchmirage.greetings.GreetingActivity
-import com.huji.couchmirage.greetings.SquareImageButton
 import com.huji.couchmirage.utils.PhotoSaver
 import com.huji.couchmirage.utils.VideoRecorder
 import com.warkiz.widget.IndicatorSeekBar
@@ -133,44 +130,6 @@ class OpenCameraActivity : AppCompatActivity() {
 
     }
 
-    /***
-     * When starting the app for the first time shows the user information abot the app
-     */
-    private fun startGreetingActivity() {
-
-        var previouslyStarted =
-            prefs!!.getBoolean("first_time", false)
-
-        val intent = Intent(application, GreetingActivity::class.java)
-
-
-        if (!previouslyStarted) {
-            val edit = prefs!!.edit()
-            edit.putBoolean("first_time", java.lang.Boolean.TRUE)
-
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-            startActivity(intent)
-
-            edit.commit()
-        }
-    }
-
-    /***
-     * Initialzie the help button
-     */
-    private fun setupHelpButton() {
-        val help: SquareImageButton = findViewById(R.id.help_btn)
-        help.setOnClickListener { view ->
-
-            val intent = Intent(this, HelpActivity::class.java)
-
-            startActivity(intent)
-
-        }
-    }
-
-
     // lifecycle methods
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,7 +137,6 @@ class OpenCameraActivity : AppCompatActivity() {
 
         setContentView(R.layout.open_camera)
         setupSharedPrefs()
-        startGreetingActivity()
 
         if (!checkIsSupportedDeviceOrFinish(this)) {
             return
@@ -192,12 +150,10 @@ class OpenCameraActivity : AppCompatActivity() {
 
         setupBox()
         setARFragmentAction()
-        setupRulerButton()
         setupClearButton()
         setupSearchButton()
         setupCameraButton()
         setupUpInfoButton()
-        setupHelpButton()
         setupSeekBar()
     }
 
@@ -370,61 +326,6 @@ class OpenCameraActivity : AppCompatActivity() {
 
     }
 
-    /*
-   * Used as a handler for onClick, so the signature must match onClickListener.
-   */
-    private fun setupRulerButton() {
-        val clear: View = findViewById(R.id.clear)
-
-        val measurement: FloatingActionButton = findViewById(R.id.fab_measurement)
-        measurement.setOnClickListener { view ->
-            vibrate()
-            var infoFab = findViewById<InfoFAB>(R.id.fab_info)
-
-
-            // todo
-            if (!measureSelected) {
-                measureSelected = true
-                onClear()
-
-
-                if (box.getMeasurementStage() == MeasurementStage.HEIGHT) {
-                    vibrate()
-
-                }
-
-                changeIconAnimated(measurement, 180f, R.drawable.done_green_32)
-
-                clear.visibility = View.VISIBLE
-
-                //
-
-
-            } else if (measureSelected && box.getMeasurementStage() == MeasurementStage.HEIGHT) {
-                measureSelected = false
-
-                vibrate()
-                changeIconAnimated(measurement, 180f, R.drawable.ruler_green_32)
-                // clear.visibility = View.GONE
-
-                userMeasurements = box.getBoxMeasurements()
-                showShapedMeasuredDialog()
-
-                //
-                seekBar.visibility = View.GONE
-                minusButton.visibility = View.GONE
-                plusButton.visibility = View.GONE
-
-                findViewById<IndicatorStayLayout>(R.id.indicator_container).visibility =
-                    View.GONE
-
-                changeInfoStageToGreen()
-            }
-
-
-        }
-
-    }
 
     /***
      * Inits hte search button
@@ -459,20 +360,13 @@ class OpenCameraActivity : AppCompatActivity() {
      */
     private fun setupClearButton() {
         val clear: View = findViewById(R.id.clear)
-        val measurement: FloatingActionButton = findViewById(R.id.fab_measurement)
 
         clear.setOnClickListener { view ->
             onClear()
-
-            if (measureSelected) {
-                measureSelected = false
-                changeIconAnimated(measurement, 180f, R.drawable.ruler_green_32)
-            }
             clear.visibility = View.GONE
         }
 
         clear.visibility = View.GONE
-
     }
 
     /**
