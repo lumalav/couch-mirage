@@ -1,6 +1,6 @@
 # ARDecor
 
-<img src="docs/images/logo.png" width="200" align="right" />
+<img src="docs/images/furniture.png" width="200" align="right" />
 
 <b>Welcome to ARDecor!</b>
 
