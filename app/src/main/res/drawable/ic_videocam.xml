@@ -2,7 +2,7 @@
     android:width="48dp"
     android:height="48dp"
     android:alpha="0.9"
-    android:tint="#69E781"
+    android:tint="#FCFFFC"
     android:viewportWidth="24"
     android:viewportHeight="24"
 
