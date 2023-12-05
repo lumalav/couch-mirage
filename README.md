@@ -1,26 +1,15 @@
-# Couch Mirage
+# ARDecor
 
 <img src="docs/images/logo.png" width="200" align="right" />
 
-<b>Welcome to Couch Mirage!</b>
+<b>Welcome to ARDecor!</b>
 
 
-Couch mirage is an augmented reality furniture design planner app similar to [IKEA Place](https://play.google.com/store/apps/details?id=com.inter_ikea.place&hl=en_US).
-Couch Mirage lets you place 3D models in your place.
+ARDecor is an AR furniture design planner app similar to [IKEA Place](https://play.google.com/store/apps/details?id=com.inter_ikea.place&hl=en_US).
+ARDecor lets you place 3D models in your place.
 By utilizing ARCore and Sceneform libraries by google it allows you to visualize how furniture would
  fit to your home without ever going to the shop.   
-Currently Couch Mirage works only in Israel.
 
-
-Couch Mirage is the final project in the university course #67625 at The Hebrew University in Jerusalem.
-See : https://shnaton.huji.ac.il/index.php/NewSyl/67625/2/2020/
-
-## Release
-The app can be found on Google Play:
-
-[https://play.google.com/store/apps/details?id=com.huji.couchmirage](https://play.google.com/store/apps/details?id=com.huji.couchmirage)
-
-<b>Latest version is v1.0.2</b>
 ## Features
 - Measuring real world  location
 - Searching furniture with  maximum measumrent
